@@ -51,6 +51,6 @@ jobs:
       run: cf login -a https://api.cf.us10-001.hana.ondemand.com -u mevlutcan.maden@solviads.com -p M.maden37
 
     - name: Deploy MTA
-      run: cf mta deploy /home/runner/work/dmTrailProject/dmTrailProject/mta_archives/dm_trail_project_0.0.1.mtar
+      run: cf  deploy /home/runner/work/dmTrailProject/dmTrailProject/mta_archives/dm_trail_project_0.0.1.mtar
 
     # Diğer adımları buraya ekleyin
