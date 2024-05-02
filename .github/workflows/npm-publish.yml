@@ -20,9 +20,6 @@ jobs:
         sudo dpkg -i /tmp/cf.deb
         sudo apt-get install -f
 
-    - name: Login to CF
-      run: cf login -a https://api.cf.us10-001.hana.ondemand.com -u mevlutcan.maden@solviads.com -p M.maden37
-
     - name: Install MTA Build Tool
       run: npm install -g mbt
 
@@ -31,6 +28,8 @@ jobs:
         mbt build
         echo "MTA build successful"
 
+    - name: Login to CF
+      run: cf login -a https://api.cf.us10-001.hana.ondemand.com -u mevlutcan.maden@solviads.com -p M.maden37
+
     - name: Deploy MTA
-      if: success()
       run: cf deploy .\mta_archives\dm_trail_project_0.0.1.mtar
