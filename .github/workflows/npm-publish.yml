@@ -16,22 +16,12 @@ jobs:
 
     - name: Install Cloud Foundry CLI
       run: |
+        wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+        echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
         sudo apt-get update
         sudo apt-get install cf-cli -y
-
-    - name: Install MTA Build Tool
-      run: npm install -g mbt
-
-    - name: Build MTA
-      run: |
-        mbt build
-        echo "MTA build successful"
 
     - name: Display CF8 Help
       run: cf8 help
 
-    - name: Login to CF
-      run: cf8 login -a https://api.cf.us10-001.hana.ondemand.com -u mevlutcan.maden@solviads.com -p M.maden37
-
-    - name: Deploy MTA
-      run: cf8 mta deploy /home/runner/work/dmTrailProject/dmTrailProject/mta_archives/dm_trail_project_0.0.1.mtar
+    # Diğer adımları ekleyin
