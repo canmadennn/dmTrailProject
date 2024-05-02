@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repository
@@ -16,21 +16,10 @@ jobs:
 
     - name: Install Cloud Foundry CLI
       run: |
-        wget -q -O /tmp/cf.deb 'https://packages.cloudfoundry.org/stable?release=debian64&version=7.2.0&source=github-rel'
-        sudo dpkg -i /tmp/cf.deb
-        sudo apt-get install -f
+        choco install cf-cli -y
 
     - name: Login to CF
       run: cf login -a https://api.cf.us10-001.hana.ondemand.com -u mevlutcan.maden@solviads.com -p M.maden37
 
-    - name: Install MTA Build Tool
-      run: npm install -g mbt
-
-    - name: Build MTA
-      run: |
-        mbt build
-        echo "MTA build successful"
-
     - name: Deploy MTA
-      if: success()
-      run: cf mta deploy mta_archives/*.mtar
+      run: cf push -f "..\dmTrailProject\mta.yaml"
