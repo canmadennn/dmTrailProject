@@ -33,4 +33,4 @@ jobs:
 
     - name: Deploy MTA
       if: success()
-      run: cf deploy mta_archives/*.mtar
+      run: cf deploy .\mta_archives\dm_trail_project_0.0.1.mtar
