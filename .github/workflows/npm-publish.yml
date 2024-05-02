@@ -27,7 +27,10 @@ jobs:
       run: npm install -g mbt
 
     - name: Build MTA
-      run: mbt build
+      run: |
+        mbt build
+        echo "MTA build successful"
 
     - name: Deploy MTA
+      if: success()
       run: cf mta deploy mta_archives/*.mtar
