@@ -21,7 +21,7 @@ jobs:
         sudo apt-get install -f
 
     - name: Login to CF
-      run: cf login -a https://api.cf.us10-001.hana.ondemand.com -u mevlutcan.maden@solviads.com -p M.maden37 
+      run: cf login -a https://api.cf.us10-001.hana.ondemand.com -u mevlutcan.maden@solviads.com -p M.maden37
 
     - name: Install MTA Build Tool
       run: npm install -g mbt
@@ -31,10 +31,3 @@ jobs:
 
     - name: Deploy MTA
       run: cf mta deploy mta_archives/*.mtar
-
-    - name: Login to CF
-      
-
-
-
-
