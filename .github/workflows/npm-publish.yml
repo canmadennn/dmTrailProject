@@ -10,16 +10,24 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    container:
+      image: debian:bullseye
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Install dependencies
+      run: |
+        apt-get update
+        apt-get install -y wget gnupg
+
     - name: Install Cloud Foundry CLI
       run: |
-        wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
-        echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-        sudo apt-get update
-        sudo apt-get install cf-cli -y
+        wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | apt-key add -
+        echo "deb https://packages.cloudfoundry.org/debian stable main" | tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+        apt-get update
+        apt-get install -y cf-cli
 
     - name: Display CF Help
       run: cf help
