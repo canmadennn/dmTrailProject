@@ -16,12 +16,13 @@ jobs:
 
     - name: Install Cloud Foundry CLI
       run: |
-        sudo apt-get update
-        sudo apt-get install -y cf-cli
+        wget -q -O /tmp/cf.deb 'https://packages.cloudfoundry.org/stable?release=debian64&version=7.2.0&source=github-rel'
+        sudo dpkg -i /tmp/cf.deb
+        sudo apt-get install -f
 
     - name: Login to CF
       run: cf login -a https://api.cf.us10-001.hana.ondemand.com -u mevlutcan.maden@solviads.com -p M.maden37 
-
+      
     - name: Install MTA Build Tool
       run: npm install -g mbt
 
@@ -30,6 +31,9 @@ jobs:
 
     - name: Deploy MTA
       run: cf deploy mta_archives/*.mtar
+
+      
+
 
 
 
