@@ -33,4 +33,4 @@ jobs:
 
     - name: Deploy MTA
       if: success()
-      run: cf mta deploy mta_archives/*.mtar
+      run: cf deploy mta_archives/*.mtar
